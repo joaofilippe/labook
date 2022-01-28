@@ -9,4 +9,8 @@ export type User = {
     password: string 
 }
 
-export interface
+export interface SignupInputDTO {
+    name: string, 
+    email: string,
+    password: string
+}

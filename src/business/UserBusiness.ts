@@ -1,20 +1,40 @@
+import connection from '../database/Basedatabase';
+import { SignupInputDTO, User } from '../entities/Users';
+import Authenticator from '../services/Authenticator';
+import HashManager from '../services/HashManager';
+import generateId from '../services/idGenerator';
+import UserDatabase from '../database/UserDatabase';
 export default class UserBusiness {
-    signup = async () => {
-        let message = 'Sucesso!'
-            
+    
+    signup = async (input: SignupInputDTO): Promise<string> => {
+        try {
+            const { name, email, password } = input;
+
             if (!name || !email || !password) {
-                res.statusCode = 406
-                message = `As propriedades "name", "email" ou "password" não foram repassadas`
-                throw new Error(message)
+                throw new Error(
+                    'As propriedades "name", "email" ou "password" não foram repassadas'
+                );
             }
 
-            const id: string = generateId()
-            const cypherPassword = await HashManager.hash(password)
+            const id: string = generateId();
+            console.log(id)
+            const hashManager = new HashManager()
+            const cypherPassword = await hashManager.hash(password);
 
-            await connection('users')
-                  .insert ({
-                      id, name, email, cypherPassword
-                  })
-            const token : string = Authenticator.generateToken({id})
-    }
+            const user: User = {
+                id,
+                name,
+                email,
+                password: cypherPassword,
+            };
+
+            const userDatabase = new UserDatabase();
+            await userDatabase.insertUser(user);
+            const authenticator = new Authenticator()
+            const token: string = authenticator.generateToken({ id });
+            return token as string;
+        } catch (error: any) {
+            throw new Error(error.message);
+        }
+    };
 }

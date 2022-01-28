@@ -1,6 +1,7 @@
 import { User } from '../entities/Users';
 import BaseDatabase from './Basedatabase';
 import express from 'express';
+import UserModels from '../models/Users';
 
 export default class UserDatabase extends BaseDatabase {
     async insertUser(user: User) {
@@ -17,17 +18,16 @@ export default class UserDatabase extends BaseDatabase {
     }
 
     async selectUserByEmail(email: string): Promise<User> {
-        const queryResult = await this.connection('users')
-            .select()
-            .where({ email });
+        try {
+            const queryResult = await this.connection('users')
+                .select()
+                .where({ email });
 
-        const user: User = {
-            id: queryResult[0].id,
-            name: queryResult[0].name,
-            email: queryResult[0].email,
-            password: queryResult[0].password,
-        };
+            const userModel = new UserModels();
 
-        return user;
+            return userModel.toUserModel(queryResult[0]);
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message);
+        }
     }
 }

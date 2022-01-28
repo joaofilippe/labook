@@ -8,7 +8,7 @@ export default class UserDatabase extends BaseDatabase {
                 id : user.id,
                 name : user.name,
                 email : user.email,
-                cypherPassword : user.password,
+                password : user.password,
             });
         } catch (error: any) {
             throw new Error (error.sqlMessage || error.message)

@@ -15,9 +15,10 @@ export default class UserController {
             const input: SignupInputDTO = {email, name, password}
             
             const userBusiness = new UserBusiness()
-            const token = userBusiness.signup(input)
+            const token = await userBusiness.signup(input)
 
-            res.status(201).send({message, token})
+
+            res.status(201).send({message, token: token})
 
             
         } catch (error: any) {

@@ -5,6 +5,7 @@ import HashManager from '../services/HashManager';
 import generateId from '../services/idGenerator';
 import UserDatabase from '../database/UserDatabase';
 export default class UserBusiness {
+    
     signup = async (input: SignupInputDTO): Promise<string> => {
         try {
             const { name, email, password } = input;
@@ -16,8 +17,9 @@ export default class UserBusiness {
             }
 
             const id: string = generateId();
-
-            const cypherPassword = await HashManager.hash(password);
+            console.log(id)
+            const hashManager = new HashManager()
+            const cypherPassword = await hashManager.hash(password);
 
             const user: User = {
                 id,
@@ -28,7 +30,8 @@ export default class UserBusiness {
 
             const userDatabase = new UserDatabase();
             await userDatabase.insertUser(user);
-            const token: string = Authenticator.generateToken({ id });
+            const authenticator = new Authenticator()
+            const token: string = authenticator.generateToken({ id });
             return token as string;
         } catch (error: any) {
             throw new Error(error.message);

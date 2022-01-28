@@ -1,5 +1,5 @@
 import connection from '../database/Basedatabase';
-import { SignupInputDTO, User } from '../entities/Users';
+import { SignupInputDTO, User, LoginInputDTO } from '../entities/Users';
 import Authenticator from '../services/Authenticator';
 import HashManager from '../services/HashManager';
 import generateId from '../services/idGenerator';
@@ -37,4 +37,18 @@ export default class UserBusiness {
             throw new Error(error.message);
         }
     };
+
+    login = async(input: LoginInputDTO) {
+        try {
+            if (!input.email || !input.password){
+                const message = 'O email e o password precisam ser fornecidos.'
+                throw new Error(message)
+            }
+
+            const {email, password} = input 
+            const checkUser: any = await connection('users').select().where({email})
+        } catch (error) {
+            
+        }
+    }
 }

@@ -38,7 +38,7 @@ export default class UserBusiness {
         }
     };
 
-    login = async(input: LoginInputDTO) {
+    login = async(input: LoginInputDTO) => {
         try {
             if (!input.email || !input.password){
                 const message = 'O email e o password precisam ser fornecidos.'
@@ -46,9 +46,31 @@ export default class UserBusiness {
             }
 
             const {email, password} = input 
-            const checkUser: any = await connection('users').select().where({email})
-        } catch (error) {
             
+            const userDatabase = new UserDatabase()
+            const checkUser = await userDatabase.selectUserByEmail(email)
+
+            if(!checkUser) {
+                let message = 'As credenciais são inválidas'
+                throw new Error (message)
+            }
+
+            const hashManager = new HashManager()
+            const checkPassword = hashManager.compare(password, checkUser.password)
+
+            if(!checkPassword){
+                let message = 'As credenciais são inválidas'
+                throw new Error (message)
+            }
+
+            const authenticator = new Authenticator();
+            const token = authenticator.generateToken({id: checkUser.id})
+
+            return token
+
+        } catch (error: any) {
+            throw new Error(error.message);
+
         }
     }
 }

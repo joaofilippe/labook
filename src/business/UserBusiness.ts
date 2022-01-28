@@ -48,15 +48,15 @@ export default class UserBusiness {
             const {email, password} = input 
             
             const userDatabase = new UserDatabase()
-            const checkUser = await userDatabase.selectUserByEmail(email)
+            const user = await userDatabase.selectUserByEmail(email)
 
-            if(!checkUser) {
+            if(!user) {
                 let message = 'As credenciais são inválidas'
                 throw new Error (message)
             }
 
             const hashManager = new HashManager()
-            const checkPassword = hashManager.compare(password, checkUser.password)
+            const checkPassword = hashManager.compare(password, user.password)
 
             if(!checkPassword){
                 let message = 'As credenciais são inválidas'
@@ -64,7 +64,7 @@ export default class UserBusiness {
             }
 
             const authenticator = new Authenticator();
-            const token = authenticator.generateToken({id: checkUser.id})
+            const token = authenticator.generateToken({id: user.id})
 
             return token
 

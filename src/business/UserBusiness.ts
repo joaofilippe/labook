@@ -7,7 +7,6 @@ import UserDatabase from '../database/UserDatabase';
 export default class UserBusiness {
     signup = async (input: SignupInputDTO): Promise<string> => {
         try {
-            let message = 'Sucesso!';
             const { name, email, password } = input;
 
             if (!name || !email || !password) {
@@ -30,7 +29,7 @@ export default class UserBusiness {
             const userDatabase = new UserDatabase();
             await userDatabase.insertUser(user);
             const token: string = Authenticator.generateToken({ id });
-            return token;
+            return token as string;
         } catch (error: any) {
             throw new Error(error.message);
         }

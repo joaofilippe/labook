@@ -17,7 +17,6 @@ export default class UserBusiness {
             }
 
             const id: string = generateId();
-            console.log(id)
             const hashManager = new HashManager()
             const cypherPassword = await hashManager.hash(password);
 
@@ -48,15 +47,16 @@ export default class UserBusiness {
             const {email, password} = input 
             
             const userDatabase = new UserDatabase()
-            const user = await userDatabase.selectUserByEmail(email)
+            const user: User = await userDatabase.selectUserByEmail(email)
 
             if(!user) {
                 let message = 'As credenciais são inválidas'
                 throw new Error (message)
             }
 
+        
             const hashManager = new HashManager()
-            const checkPassword = hashManager.compare(password, user.password)
+            const checkPassword : boolean = await hashManager.compare(password, user.password)
 
             if(!checkPassword){
                 let message = 'As credenciais são inválidas'
@@ -69,6 +69,7 @@ export default class UserBusiness {
             return token
 
         } catch (error: any) {
+
             throw new Error(error.message);
 
         }

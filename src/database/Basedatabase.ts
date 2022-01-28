@@ -3,17 +3,20 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const port: number = Number(process.env.DB_PORT);
+export default class BaseDatabase {
 
-const connection = knex({
-    client: 'mysql2',
-    connection: {
-        host: process.env.DB_HOST,
-        port: port || 3306,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
-    },
-});
+    port: number = Number(process.env.DB_PORT);
+    
+    protected connection = knex({
+        client: 'mysql2',
+        connection: {
+            host: process.env.DB_HOST,
+            port: this.port || 3306,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+        },
+    });
+}
 
-export default connection;
+

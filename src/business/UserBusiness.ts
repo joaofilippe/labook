@@ -1,5 +1,5 @@
 import connection from '../database/Basedatabase';
-import { SignupInputDTO, User } from '../entities/Users';
+import { SignupInputDTO, User, LoginInputDTO } from '../entities/Users';
 import Authenticator from '../services/Authenticator';
 import HashManager from '../services/HashManager';
 import generateId from '../services/idGenerator';
@@ -37,4 +37,40 @@ export default class UserBusiness {
             throw new Error(error.message);
         }
     };
+
+    login = async(input: LoginInputDTO) => {
+        try {
+            if (!input.email || !input.password){
+                const message = 'O email e o password precisam ser fornecidos.'
+                throw new Error(message)
+            }
+
+            const {email, password} = input 
+            
+            const userDatabase = new UserDatabase()
+            const checkUser = await userDatabase.selectUserByEmail(email)
+
+            if(!checkUser) {
+                let message = 'As credenciais são inválidas'
+                throw new Error (message)
+            }
+
+            const hashManager = new HashManager()
+            const checkPassword = hashManager.compare(password, checkUser.password)
+
+            if(!checkPassword){
+                let message = 'As credenciais são inválidas'
+                throw new Error (message)
+            }
+
+            const authenticator = new Authenticator();
+            const token = authenticator.generateToken({id: checkUser.id})
+
+            return token
+
+        } catch (error: any) {
+            throw new Error(error.message);
+
+        }
+    }
 }

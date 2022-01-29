@@ -1,7 +1,7 @@
 import { User } from '../entities/Users';
 import BaseDatabase from './Basedatabase';
 import express from 'express';
-import UserModels from '../models/UsersModels';
+import UserModels from '../models/UserModel';
 
 export default class UserDatabase extends BaseDatabase {
     async insertUser(user: User) {

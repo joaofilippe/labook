@@ -1,6 +1,6 @@
 import { User } from "../entities/Users"
 
-export default class UserModels{
+export default class UserModel{
     toUserModel = (obj: any) : User=> {
         const user: User = {
             id: obj.id,

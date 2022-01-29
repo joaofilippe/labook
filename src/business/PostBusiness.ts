@@ -30,7 +30,28 @@ export default class PostBusiness {
 
             await new PostDatabase().create(post);
         } catch (error: any) {
-            let message = error.message || error.sqlMessage
+            let message = error.message || error.sqlMessage;
         }
     };
+
+    getPostById=  async (token: string, id: string) => {
+        try {
+            if (!token) {
+                let message = 'Você precisa estar logado para ver um post.';
+                throw new Error(message);
+            }
+
+            const post: Post = await new PostDatabase().getPostById(id);
+
+            if (!post) {
+                let message = 'Post não encontrado';
+            }
+
+            return post
+
+        } catch (error: any) {
+            let message = error.message;
+            throw new Error(message);
+        }
+    }
 }

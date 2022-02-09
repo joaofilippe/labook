@@ -59,12 +59,12 @@ npm run test
          ```
     - No Headers;
     - Return:
-     ```
-     {
-         message: 'Sucess',
-         token: jwtToken
-     }
-     ```
+        ```
+        {
+            message: 'Sucess',
+            token: jwtToken
+        }
+        ```
 
 - `Login`: http://localhost:3006/users/login
     - Method: `POST`;

@@ -27,6 +27,7 @@ npm run mysql
 ### Run the API
 
 To run this API you must have run the script:
+
 `
 npm run start
 `
@@ -34,6 +35,7 @@ npm run start
 ### Run the Tests
 
 To get acess to the tests run the script:
+
 `
 npm run test
 `

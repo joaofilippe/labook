@@ -1,10 +1,6 @@
 # Labook
 
-
-
 ![Logo.png](D:\github\labook\labook\assets\Logo.png)
-
-
 
 The Labook API provides a REST API to implements a social-media application.
 
@@ -171,9 +167,21 @@ npm run test
         } 
     ```
 
-
-
 ### 
+
+### Author:
+
+
+
+<img title="" src="file:///D:/OneDrive/Imagens/Thumb.png" alt="Thumb.png" data-align="inline" width="71">  
+
+João Filippe Rossi Rodrigues 
+
+[![Linkedin Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=LINK_LINKEDIN)](https://www.linkedin.com/in/joaofilippe/)
+
+
+
+
 
 Image Credits:
 

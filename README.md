@@ -1,6 +1,6 @@
 # Labook
 
-![Logo.png](.\assets\Logo.png)
+![Logo.png](./assets/Logo.png)
 
 The Labook API provides a REST API to implements a social-media application.
 

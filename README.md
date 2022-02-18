@@ -171,7 +171,7 @@ npm run test
 
 ### Author:
 
-<img title="" src="file:///D:/OneDrive/Imagens/Thumb.png" alt="Thumb.png" data-align="inline" width="71">  
+<img title="" src="./assets/Thumb.png" alt="Thumb.png" data-align="inline" width="70">  
 
 João Filippe Rossi Rodrigues 
 

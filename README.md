@@ -171,8 +171,6 @@ npm run test
 
 ### Author:
 
-
-
 <img title="" src="file:///D:/OneDrive/Imagens/Thumb.png" alt="Thumb.png" data-align="inline" width="71">  
 
 João Filippe Rossi Rodrigues 
@@ -181,8 +179,6 @@ João Filippe Rossi Rodrigues
 
 
 
-
-
 Image Credits:
-
 <a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Freepik - Flaticon</a> 
+

@@ -10,7 +10,7 @@
         "migrations:posts create": "clear && nodemon ./src/database/migrations/PostsMigrations.ts create",
         "migrations:posts drop": "clear && nodemon ./src/database/migrations/PostsMigrations.ts drop",
         "migrations:posts check": "clear && nodemon ./src/database/migrations/PostsMigrations.ts check",
-        "dev": "clear && ts-node-dev ./src/index.ts",
+        "dev": "ts-node-dev ./src/index.ts",
         "start": "tsc && node ./build/index.js",
         "test": "jest"
     },

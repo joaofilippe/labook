@@ -177,8 +177,5 @@ João Filippe Rossi Rodrigues
 
 [![Linkedin Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=LINK_LINKEDIN)](https://www.linkedin.com/in/joaofilippe/)
 
-
-
 Image Credits:
 <a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Freepik - Flaticon</a> 
-

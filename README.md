@@ -2,6 +2,8 @@
 
 ![Logo.png](./assets/Logo.png)
 
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+
 The Labook API provides a REST API to implements a social-media application.
 
 Technologies, languages and frameworks:

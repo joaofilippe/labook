@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  app:
+    image: joaofilippe/labook-api
+    container_name: labook-api
+    ports:
+      - 8000:3006
+      - 8306:3306
+    depends_on:
+      - db
+    
+  db:
+    image: mysql
+    container_name: db
+    environment:
+      - MYSQL_USER=joaof
+      - MYSQL_PASSWORD=S7252ntf
+      - MYSQL_DATABASE=labook
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

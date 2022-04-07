@@ -74,7 +74,7 @@ export default class PostsMigrations extends BaseDatabase {
     };
 }
 
-const migrations = async (argv: string) => {
+export const postMigrations = async (argv: string) => {
     const postsMigrations = new PostsMigrations();
     if (argv === 'check') {
         const check = await postsMigrations.check();
@@ -97,4 +97,4 @@ const migrations = async (argv: string) => {
     }
 };
 
-migrations(argv);
+postsMigrations(argv);

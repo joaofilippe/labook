@@ -14,10 +14,11 @@ services:
     image: mysql
     container_name: db
     environment:
-      - MYSQL_USER=joaof
-      - MYSQL_PASSWORD=S7252ntf
-      - MYSQL_DATABASE=labook
-  
+      MYSQL_ROOT_PASSWORD: "S7252ntf"
+      MYSQL_USER : "joaof"
+      MYSQL_PASSWORD : "S7252ntf"
+      MYSQL_DATABASE: "labook"
+
   adminer:
     image: adminer
     restart: always

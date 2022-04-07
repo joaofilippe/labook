@@ -72,7 +72,7 @@ export default class UsersMigrations extends BaseDatabase {
     };
 }
 
-const migrations = async (argv: string) => {
+export const usersMigrations = async (argv: string) => {
     const usersMigrations = new UsersMigrations();
     if (argv === 'check') {
         const check = await usersMigrations.check();
@@ -95,4 +95,4 @@ const migrations = async (argv: string) => {
     }
 };
 
-migrations(argv);
+usersMigrations(argv);

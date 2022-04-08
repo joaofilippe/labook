@@ -10,7 +10,7 @@ export default class BaseDatabase {
     protected connection = knex({
         client: 'mysql2',
         connection: {
-            host: process.env.DB_HOST,
+            host: process.env.DB_HOST || 'localhost',
             port: this.port || 3306,
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,

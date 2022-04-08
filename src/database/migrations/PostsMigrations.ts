@@ -74,7 +74,7 @@ export default class PostsMigrations extends BaseDatabase {
     };
 }
 
-export const postMigrations = async (argv: string) => {
+export const postsMigrations = async (argv: string) => {
     const postsMigrations = new PostsMigrations();
     if (argv === 'check') {
         const check = await postsMigrations.check();

@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.8'
 
 services:
   db:
@@ -7,12 +7,14 @@ services:
     env_file:
       - .env
     ports:
-      - $DOCKER_MYSQL_PORT:$DB_PORT
+      - "$DOCKER_MYSQL_PORT:$DB_PORT"
     environment:
-      - MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD
-      - MYSQL_USER=$DB_USER
-      - MYSQL_PASSWORD=$DB_PASSWORD
-      - MYSQL_DATABASE=$DB_DATABASE
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_USER: $DB_USER
+      MYSQL_PASSWORD: $DB_PASSWORD
+      MYSQL_DATABASE: $DB_DATABASE
+    volumes:
+      - ./database/mysql:/d/github/labook
 
   adminer:
     image: adminer
@@ -23,13 +25,11 @@ services:
   app:
     image: joaofilippe/labook-api
     container_name: labook-api
+    build: .
     env_file:
       - .env
     ports:
       - $DOCKER_NODE_PORT:$PORT
     depends_on:
       - db
-    environment:
-      - DB_HOST=db
-  
-
+    restart: always

@@ -5,6 +5,9 @@ import { Request, Response } from 'express'
 import UsersMigrations from './database/migrations/UsersMigrations'
 import PostsMigrations from './database/migrations/PostsMigrations'
 
+
+console.log('Welcome to Labook API')
+
 app.get('/migrations',async (req: Request, res: Response) => {
   try {
     const usersMigrations = new UsersMigrations()
